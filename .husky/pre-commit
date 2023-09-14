@@ -3,3 +3,16 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npx lint-staged
+
+#!/bin/sh
+# Check if the CI environment variable is set, and if so, exit the script with a status code of 0 (success).
+[ -n "$CI" ] && exit 0
+
+# Source the husky.sh script located in the _ directory of the same directory as this script.
+# Husky is used for setting up Git hooks.
+. "$(dirname "$0")/_/husky.sh"
+
+# Run lint-staged using npx.
+# lint-staged is a tool for running linters on staged (modified) files in a Git repository.
+# This helps ensure that only staged files are checked by linters.
+npx lint-staged
